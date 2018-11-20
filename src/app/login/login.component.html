@@ -1,0 +1,57 @@
+<div class="wrapper">
+    <div class="container">
+        <form nz-form
+            [formGroup]="loginForm">
+            <nz-form-item>
+                <nz-form-control>
+                    <nz-input-group [nzPrefix]="prefixUser">
+                        <input type="email"
+                            nz-input
+                            formControlName="email"
+                            placeholder="E-mail"
+                            id="email">
+                    </nz-input-group>
+                    <nz-form-explain *ngIf="isFieldInvalid(loginForm, 'email')">
+                        {{ getValidationError(loginForm.get('email').errors) }}
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control>
+                    <nz-input-group [nzPrefix]="prefixLock">
+                        <input type="password"
+                            nz-input
+                            formControlName="password"
+                            placeholder="Пароль">
+                    </nz-input-group>
+                    <nz-form-explain *ngIf="isFieldInvalid(loginForm, 'password')">
+                        {{ getValidationError(loginForm.get('password').errors) }}
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control>
+                    <div class="form-submit-row">
+                        <label nz-checkbox
+                            formControlName="remember">
+                            <span>Запам'ятати мене</span>
+                        </label>
+                        <a>Забули пароль?</a>
+                        <button nz-button
+                            class="login-form-button"
+                            [nzType]="'primary'"
+                            (click)="login(loginForm.value)"
+                            [disabled]="!loginForm.valid">
+                            Log in
+                        </button>
+                        <span>
+                            Або <a routerLink="/registration">зареєструватися!</a>
+                        </span>
+                    </div>
+                </nz-form-control>
+            </nz-form-item>
+        </form>
+        <ng-template #prefixUser><i nz-icon type="user"></i></ng-template>
+        <ng-template #prefixLock><i nz-icon type="lock"></i></ng-template>
+    </div>
+</div>

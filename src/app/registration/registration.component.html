@@ -1,0 +1,89 @@
+<div class="wrapper">
+    <div class="container">
+        <form nz-form
+            [formGroup]="registrationForm">
+            <nz-form-item>
+                <nz-form-control>
+                    <nz-input-group [nzPrefix]="prefixUser">
+                        <input type="email"
+                            nz-input
+                            formControlName="email"
+                            placeholder="E-mail"
+                            id="email">
+                    </nz-input-group>
+                    <nz-form-explain *ngIf="isFieldInvalid(registrationForm, 'email')">
+                        {{ getValidationError(registrationForm.get('email').errors) }}
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control>
+                    <nz-input-group [nzPrefix]="prefixLock">
+                        <input type="password"
+                            nz-input
+                            formControlName="password"
+                            placeholder="Пароль">
+                    </nz-input-group>
+                    <nz-form-explain *ngIf="isFieldInvalid(registrationForm, 'password')">
+                        {{ getValidationError(registrationForm.get('password').errors) }}
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control>
+                    <nz-input-group>
+                        <input type="text"
+                            nz-input
+                            formControlName="last_name"
+                            placeholder="Прізвище">
+                    </nz-input-group>
+                    <nz-form-explain *ngIf="isFieldInvalid(registrationForm, 'last_name')">
+                            {{ getValidationError(registrationForm.get('last_name').errors) }}
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control>
+                    <nz-input-group>
+                        <input type="text"
+                            nz-input
+                            formControlName="first_name"
+                            placeholder="Ім'я">
+                    </nz-input-group>
+                    <nz-form-explain *ngIf="isFieldInvalid(registrationForm, 'first_name')">
+                            {{ getValidationError(registrationForm.get('first_name').errors) }}
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control>
+                    <nz-input-group>
+                        <input type="text"
+                            nz-input
+                            formControlName="fathers_name"
+                            placeholder="По батькові">
+                    </nz-input-group>
+                    <nz-form-explain *ngIf="isFieldInvalid(registrationForm, 'fathers_name')">
+                            {{ getValidationError(registrationForm.get('fathers_name').errors) }}
+                    </nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+                <nz-form-control>
+                    <button nz-button
+                        class="login-form-button"
+                        [nzType]="'primary'"
+                        (click)="registrationSrv.register(registrationForm.value)"
+                        [disabled]="!registrationForm.valid">
+                        Зареєструватися
+                    </button>
+                    <span>
+                        або <a routerLink="/login">увійти!</a>
+                    </span>
+                </nz-form-control>
+            </nz-form-item>
+        </form>
+        <ng-template #prefixUser><i nz-icon type="user"></i></ng-template>
+        <ng-template #prefixLock><i nz-icon type="lock"></i></ng-template>
+    </div>
+</div>
